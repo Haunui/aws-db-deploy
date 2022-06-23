@@ -15,6 +15,14 @@ pipeline {
         script {
           sh "bash deploy_instance.sh"
         }
+      }
+    }
+    
+    stage('Deploy App') {
+      steps {
+        script {
+          sh "bash deploy_app.sh"
+        }
 
       }
     }
