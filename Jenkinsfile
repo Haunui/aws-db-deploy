@@ -11,9 +11,6 @@ pipeline {
 
     stages {
 	stage('Cleanup') {
-	    when {
-		expression { exists != null }
-	    }
 	    steps {
 		script {
 	            sh "bash cleanup.sh ${exists}"
