@@ -21,7 +21,13 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          sh "bash deploy_app.sh"
+	  sshagent (credentials: ['1d0a0f84-dbef-4f8c-95a2-1f8cc7ae7ff4']) {
+	    sh "bash deploy_app.sh"
+	    exit 0
+            sh "rm -rf /var/www/html/*"
+	    sh "scp -r webapp/* ubuntu@$(cat instance_ip):/var/www/html/"
+	    sh "mysql < /var/www/html/db.sql; rm -f /var/www/html/db.sql"
+	  }
         }
 
       }
