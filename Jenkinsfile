@@ -23,14 +23,14 @@ pipeline {
 	    }
 	    steps {
 		script {
-	            sh(script: 'bash cleanup.sh ${exists}', returnStdout: false)
+	            sh "bash cleanup.sh ${exists}"
 		}
 	    }
 	}
         stage('Deploy') {
             steps {
 		script {
-	            sh(script: 'bash deploy.sh', returnStdout: false)
+	            sh "bash deploy.sh"
 		}
             }
         }
