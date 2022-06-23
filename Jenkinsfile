@@ -22,6 +22,7 @@ pipeline {
       steps {
         script {
 	  sshagent (credentials: ['1d0a0f84-dbef-4f8c-95a2-1f8cc7ae7ff4']) {
+	    sh "cat instance_ip"
 	    sh "bash deploy_app.sh"
 	    exit 0
 	  }
