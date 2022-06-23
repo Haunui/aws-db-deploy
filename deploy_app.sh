@@ -21,7 +21,7 @@ ssh $SSH_OPTS $SSH_LOGIN "echo \"MYSQL_USER=$(echo "$cred" | cut -d':' -f1)\" >>
 ssh $SSH_OPTS $SSH_LOGIN "echo \"MYSQL_PASSWORD=$(echo "$cred" | cut -d':' -f2)\" >> /etc/apache2/envvars"
 
 echo "Generate db.sql"
-cat webapp/templates/db.sql | sed "s/{{USER}}/$(echo "$cred" | cut -d':' -f1)/g" | sed "s/{{PASSWORD}}/$(echo "$cred" | cut -d':' -f2)/g" > webapp/files/db.sql
+cat template_files/db.sql | sed "s/{{USER}}/$(echo "$cred" | cut -d':' -f1)/g" | sed "s/{{PASSWORD}}/$(echo "$cred" | cut -d':' -f2)/g" > webapp/db.sql
 
 echo "Clear /var/www/html folder"
 ssh $SSH_OPTS $SSH_LOGIN 'sudo rm -rf /var/www/html/*'
@@ -30,7 +30,7 @@ echo "Upload webapp files"
 scp $SSH_OPTS -r webapp/* $SSH_LOGIN:/var/www/html/
 
 echo "Remove webapp generated files"
-rm -f webapp/files/db.sql
+rm -f webapp/db.sql
 
 echo "Import db.sql"
 ssh $SSH_OPTS $SSH_LOGIN 'sudo mysql < /var/www/html/db.sql'
