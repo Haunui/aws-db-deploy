@@ -21,19 +21,17 @@ pipeline {
 
     stage('Test') {
       parallel {
-        stage('Test') {
+        stage('HTTP INDEX') {
           steps {
             script {
-              sh "bash test.sh"
+              sh "bash test_http_index.sh"
             }
-
-            sh 'echo "hello world"'
           }
         }
 
-        stage('TEST2') {
+        stage('HTTP DB STATUS') {
           steps {
-            sh 'echo hello'
+            sh 'bash test_http_db.sh'
           }
         }
 
