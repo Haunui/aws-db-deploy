@@ -13,7 +13,7 @@ pipeline {
 	stage('Cleanup') {
 	    steps {
 		script {
-	            sh "bash cleanup.sh ${exists}"
+	            sh "bash cleanup.sh"
 		}
 	    }
 	}
