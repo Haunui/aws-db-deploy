@@ -14,6 +14,7 @@ pipeline {
       steps {
         script {
           sh "bash deploy_instance.sh"
+	  sh "cat instance_ip"
         }
       }
     }
