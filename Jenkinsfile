@@ -16,7 +16,9 @@ pipeline {
 		expression { exists != null }
 	    }
 	    steps {
-	        bash cleanup.sh "${exists}"
+		script {
+	            bash cleanup.sh "${exists}"
+		}
 	    }
 	}
         stage('Deploy') {
