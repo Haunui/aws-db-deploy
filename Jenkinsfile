@@ -13,7 +13,7 @@ pipeline {
     stage('Deploy Instance') {
       steps {
         script {
-          sh "bash deploy.sh"
+          sh "bash deploy_instance.sh"
         }
 
       }
