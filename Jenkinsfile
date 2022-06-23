@@ -23,6 +23,7 @@ pipeline {
 	    }
 	    steps {
 		script {
+		    echo "${exists}"
 	            sh(script: 'cleanup.sh ${exists}', returnStdout: false)
 		}
 	    }
