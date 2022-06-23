@@ -49,7 +49,6 @@ pipeline {
 
       }
     }
-
   }
   environment {
     AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
