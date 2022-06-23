@@ -1,5 +1,3 @@
-def exists
-
 pipeline {
     agent any
 
@@ -24,5 +22,12 @@ pipeline {
 		}
             }
         }
+	stage('Test') {
+	    steps {
+		script {
+		    sh "bash test.sh"
+		}
+	    }
+	}
     }
 }
