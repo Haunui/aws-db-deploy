@@ -23,7 +23,6 @@ pipeline {
 	    }
 	    steps {
 		script {
-		    sh "echo \"DEBUG : ${exists}\""
 	            sh "bash cleanup.sh ${exists}"
 		}
 	    }
