@@ -10,7 +10,7 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
+    stage('Deploy Instance') {
       steps {
         script {
           sh "bash deploy.sh"
