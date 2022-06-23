@@ -7,7 +7,7 @@ pipeline {
         stage('Check if exists') {
 	    steps {
 	        script {
-		    exists = $(bash check_if_exists.sh)
+		    exists = sh(script: 'bash check_if_exists.sh', returnStdout: true)
                 }
             }
         }
