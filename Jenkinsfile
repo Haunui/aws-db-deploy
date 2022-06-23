@@ -27,7 +27,6 @@ pipeline {
 	    exit 0
 	  }
         }
-
       }
     }
 
