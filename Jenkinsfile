@@ -23,13 +23,13 @@ pipeline {
 	    }
 	    steps {
 		script {
-	            bash cleanup.sh "${exists}"
+	            sh cleanup.sh "${exists}"
 		}
 	    }
 	}
         stage('Deploy') {
             steps {
-                bash deploy.sh
+                sh deploy.sh
             }
         }
     }
