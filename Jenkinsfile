@@ -28,19 +28,19 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Test App') {
       parallel {
         stage('HTTP INDEX') {
           steps {
             script {
-              sh "bash test_http_index.sh"
+              sh "bash test_app_index.sh"
             }
           }
         }
 
         stage('HTTP DB STATUS') {
           steps {
-            sh 'bash test_http_db.sh'
+            sh 'bash test_app_db.sh'
           }
         }
 
