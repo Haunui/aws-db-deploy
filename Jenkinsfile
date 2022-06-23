@@ -10,13 +10,6 @@ pipeline {
     }
 
     stages {
-        stage('Check if exists') {
-	    steps {
-	        script {
-		    exists = sh(script: 'bash check_if_exists.sh', returnStdout: true)
-                }
-            }
-        }
 	stage('Cleanup') {
 	    when {
 		expression { exists != null }
