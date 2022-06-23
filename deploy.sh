@@ -16,3 +16,9 @@ while [[ $STATE != running ]]; do
 	echo "Waiting for instance '$INSTANCE_ID' to start.. (status : $STATE)"
 	sleep 10
 done
+
+echo "Retrieving instance IP.."
+INSTANCE_IP=$(aws ec2 describe-instances --instance-ids i-0128566100549aff3 --query "Reservations[0].Instances[0].PublicIpAddress" | sed 's/"//g')
+
+echo "Writing INSTANCE_IP in instance_ip file.."
+echo "$INSTANCE_IP" > instance_ip
