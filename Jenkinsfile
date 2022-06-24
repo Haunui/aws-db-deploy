@@ -13,7 +13,9 @@ pipeline {
     stage('Instance Deploy.') {
       steps {
         script {
-          sh "bash deploy_instance.sh"
+          sshagent (credentials: ['bkp_ssh_credentials']) {
+            sh "bash deploy_instance.sh"
+          }
         }
       }
     }
