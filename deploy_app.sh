@@ -16,18 +16,24 @@ echo "Stop apache2 .."
 ssh $SSH_OPTS $SSH_LOGIN 'sudo systemctl stop apache2'
 
 echo "Set MYSQL credentials"
+
+ssh $SSH_OPTS $SSH_LOGIN "sudo cp /etc/apache2/envvars /tmp/envvars; sudo chown ubuntu /tmp/envvars"
+
 cred=$(gen_cred)
-ssh $SSH_OPTS $SSH_LOGIN "echo \"MYSQL_USER=$(echo "$cred" | cut -d':' -f1)\" >> /etc/apache2/envvars"
-ssh $SSH_OPTS $SSH_LOGIN "echo \"MYSQL_PASSWORD=$(echo "$cred" | cut -d':' -f2)\" >> /etc/apache2/envvars"
+ssh $SSH_OPTS $SSH_LOGIN "echo \"export MYSQL_USER=$(echo "$cred" | cut -d':' -f1)\" >> /tmp/envvars"
+ssh $SSH_OPTS $SSH_LOGIN "echo \"export MYSQL_PASSWORD=$(echo "$cred" | cut -d':' -f2)\" >> /tmp/envvars"
+
+ssh $SSH_OPTS $SSH_LOGIN "sudo mv /tmp/envvars /etc/apache2/envvars; sudo chown root /etc/apache2/envvars"
 
 echo "Generate db.sql"
-cat template_files/db.sql | sed "s/{{USER}}/$(echo "$cred" | cut -d':' -f1)/g" | sed "s/{{PASSWORD}}/$(echo "$cred" | cut -d':' -f2)/g" > webapp/db.sql
+cat template_files/webapp/db.sql | sed "s/{{USER}}/$(echo "$cred" | cut -d':' -f1)/g" | sed "s/{{PASSWORD}}/$(echo "$cred" | cut -d':' -f2)/g" > webapp/db.sql
 
 echo "Clear /var/www/html folder"
 ssh $SSH_OPTS $SSH_LOGIN 'sudo rm -rf /var/www/html/*'
 
 echo "Upload webapp files"
-scp $SSH_OPTS -r webapp/* $SSH_LOGIN:/var/www/html/
+scp $SSH_OPTS -r webapp $SSH_LOGIN:~
+ssh $SSH_OPTS $SSH_LOGIN 'sudo mv webapp/* /var/www/html/; sudo rm -rf webapp'
 
 echo "Remove webapp generated files"
 rm -f webapp/db.sql
