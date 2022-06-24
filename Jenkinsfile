@@ -25,9 +25,9 @@ pipeline {
         stage('Apache2') {
           steps {
             script {
-	      sshagent (credentials: ['ssh_credentials']) {
+              sshagent (credentials: ['ssh_credentials']) {
                 sh "bash test_instance_apache2.sh"
-	      }
+              }
             }
           }
         }
@@ -35,9 +35,9 @@ pipeline {
         stage('MariaDB') {
           steps {
             script {
-	      sshagent (credentials: ['ssh_credentials']) {
+              sshagent (credentials: ['ssh_credentials']) {
                 sh "bash test_instance_mariadb.sh"
-	      }
+              }
             }
           }
         }
@@ -48,9 +48,9 @@ pipeline {
     stage('App Deploy.') {
       steps {
         script {
-	  sshagent (credentials: ['ssh_credentials']) {
-	    sh "bash deploy_app.sh"
-	  }
+          sshagent (credentials: ['ssh_credentials']) {
+            sh "bash deploy_app.sh"
+          }
         }
       }
     }
