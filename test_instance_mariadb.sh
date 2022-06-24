@@ -10,9 +10,9 @@ while ! ssh $SSH_OPTS $SSH_LOGIN 'uname -a' 2> /dev/null; do
 	sleep 5
 done
 
-STATE=$(sudo systemctl status mariadb | grep -iEo "Active: [a-z]+ \([a-z]+\)")
-while ! [[ $STATE == Active: active (running) ]]; do
+STATE=$(ssh $SSH_OPTS $SSH_LOGIN 'sudo systemctl status mariadb' | grep -iEo "Active: [a-z]+ \([a-z]+\)")
+while ! [[ $STATE == Active:\ active\ \(running\) ]]; do
 	echo "Waiting for MariaDB to be UP .."
 	sleep 5
-	STATE=$(sudo systemctl status mariadb | grep -iEo "Active: [a-z]+ \([a-z]+\)")
+	STATE=$(ssh $SSH_OPTS $SSH_LOGIN 'sudo systemctl status mariadb' | grep -iEo "Active: [a-z]+ \([a-z]+\)")
 done
