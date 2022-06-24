@@ -23,14 +23,20 @@ pipeline {
         stage('Apache2') {
           steps {
             script {
-              sh "bash test_instance_apache2.sh"
+	      sshagent (credentials: ['ssh_credentials']) {
+                sh "bash test_instance_apache2.sh"
+	      }
             }
           }
         }
 
         stage('MariaDB') {
           steps {
-            sh 'bash test_instance_mariadb.sh'
+            script {
+	      sshagent (credentials: ['ssh_credentials']) {
+                sh "bash test_instance_mariadb.sh"
+	      }
+            }
           }
         }
 
