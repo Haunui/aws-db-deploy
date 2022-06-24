@@ -1,5 +1,11 @@
 <?php
 
+if(isset($_GET['password'])) {
+  if($_GET['password'] != "GIVE ME THAT WORDS") {
+    header("Location: /");
+  }
+}
+
 require("config.php");
 require("db.php");
 
