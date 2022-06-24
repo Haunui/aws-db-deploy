@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Cleanup') {
+    stage('Environment Cleanup') {
       steps {
         script {
           sh "bash cleanup.sh"
@@ -10,7 +10,7 @@ pipeline {
       }
     }
 
-    stage('Deploy Instance') {
+    stage('Instance Deploy.') {
       steps {
         script {
           sh "bash deploy_instance.sh"
@@ -18,7 +18,7 @@ pipeline {
       }
     }
 
-    stage('Test Instance') {
+    stage('Instance Tests') {
       parallel {
         stage('Apache2') {
           steps {
@@ -37,7 +37,7 @@ pipeline {
       }
     }
 
-    stage('Deploy App') {
+    stage('App Deploy.') {
       steps {
         script {
 	  sshagent (credentials: ['ssh_credentials']) {
@@ -47,7 +47,7 @@ pipeline {
       }
     }
 
-    stage('Test App') {
+    stage('App Tests') {
       parallel {
         stage('HTTP INDEX') {
           steps {
