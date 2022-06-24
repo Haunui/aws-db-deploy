@@ -55,7 +55,7 @@ pipeline {
 
     stage('App Tests') {
       parallel {
-        stage('HTTP INDEX') {
+        stage('HTTP Index') {
           steps {
             script {
               sh "bash test_app_index.sh"
@@ -63,7 +63,7 @@ pipeline {
           }
         }
 
-        stage('HTTP DB STATUS') {
+        stage('HTTP DB Status') {
           steps {
             sh 'bash test_app_db.sh'
           }
