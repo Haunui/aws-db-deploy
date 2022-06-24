@@ -34,7 +34,7 @@ for i in {1..6}; do
 
 	if [ $? -eq 0 ]; then
 		exit 0
-	elif [ $i -eq 100 ]; then
+	elif [ $i -eq 6 ]; then
 		if [ $? -eq 1 ]; then
 			echo "Database connection failed"
 		elif [ $? -eq 2 ]; then
