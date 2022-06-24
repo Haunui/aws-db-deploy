@@ -5,7 +5,7 @@ var score = 0
 
 let N_WORD = 10
 
-let TIME_PER_GAME = 10
+let TIME_PER_GAME = 60
 var timer = TIME_PER_GAME
 
 var intervalID = null
