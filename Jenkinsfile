@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Environment Cleanup') {
+    stage('Env. Cleanup') {
       steps {
         script {
           sh "bash cleanup.sh"
