@@ -26,7 +26,7 @@ test_ip() {
 }
 
 
-for i in {1..100}; do
+for i in {1..6}; do
 	echo "IP : $INSTANCE_IP"
 	echo ""
 
