@@ -6,7 +6,7 @@ a_c=0
 
 test_ip() {
 	INSTANCE_IP=$1
-	r=$(curl -s -Ik http://$INSTANCE_IP/db_status | grep "HTTP/1.1")
+	r=$(curl -s -Ik http://$INSTANCE_IP/db_status.php | grep "HTTP/1.1")
 	
 	a_c=$(($a_c+1))
 
