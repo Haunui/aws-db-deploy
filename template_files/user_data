@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-sudo apt update -y; sudo apt install -y mariadb-server apache2 php
+sudo apt update -y; sudo apt install -y mariadb-server apache2 php php-pdo php-mysql php-zip php-gd  php-mbstring php-curl
 
 # Make sure that NOBODY can access the server without a password
 sudo mysql -e "UPDATE sudo mysql.user SET Password = PASSWORD('{{ROOT_PASSWORD}}') WHERE User = 'root'"
