@@ -12,7 +12,7 @@ test_ip() {
 
 
 	if [[ "$r" =~ "200 OK" ]]; then
-		if [[ $(curl -s http://$INSTANCE_IP/db_status) == 0 ]]; then
+		if [[ $(curl -s http://$INSTANCE_IP/db_status.php) == 0 ]]; then
 			echo "Attempt n°$a_c : $r (DB OK)"
 			return 0
 		else
