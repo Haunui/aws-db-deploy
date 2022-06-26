@@ -4,7 +4,7 @@ pipeline {
     stage('test parameter') {
       steps {
         script {
-          sh "start test :"
+          sh "echo \"start test :\""
           sh "echo \"PARAM1: $PARAM1\""
           exit 1
         }
