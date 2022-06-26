@@ -53,7 +53,7 @@ pipeline {
           }
         }
 
-        build job: 'aws-db-restore', parameters: [string(name: 'DATABASE', value: "${env.DATABASE}"), boolean(name: 'NEW_ENV', value: false)], wait: true
+        build job: 'aws-db-restore', parameters: [string(name: 'DATABASE', value: "${env.DATABASE}"), booleanParam(name: 'NEW_ENV', value: false)], wait: true
       }
     }
 
