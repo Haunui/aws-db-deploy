@@ -1,6 +1,13 @@
 pipeline {
   agent any
   stages {
+    stage('test parameter') {
+      steps {
+        script {
+          sh "echo $PARAM1"
+        }
+      }
+    }
     stage('Env. Cleanup') {
       steps {
         script {
