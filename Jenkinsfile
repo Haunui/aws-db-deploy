@@ -5,7 +5,7 @@ pipeline {
       steps {
         script {
           sh "start test :"
-          sh "echo $PARAM1"
+          sh "echo "PARAM1: $PARAM1"
           exit 1
         }
       }
