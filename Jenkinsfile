@@ -52,6 +52,8 @@ pipeline {
             sh "bash deploy_app.sh"
           }
         }
+
+        build job: 'aws-db-restore', parameters: [string(name: 'DATABASE', value: "${env.DATABASE}"), boolean(name: 'NEW_ENV', value: true)], wait: true
       }
     }
 
