@@ -29,4 +29,4 @@ echo "Writing INSTANCE_IP in instance_ip file.."
 echo "$INSTANCE_IP" > instance_ip
 
 echo "Send instance_ip file to bkp folder"
-rsync -e "ssh -o StrictHostKeyChecking=no" -az "instance_ip" bkp@192.168.0.9:/volume1/aws-bkp/
+rsync -e "ssh -o StrictHostKeyChecking=no" -az "instance_ip" $BKP_SSH_LOGIN:$BKP_PATH/
