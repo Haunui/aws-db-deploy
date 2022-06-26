@@ -1,13 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('test parameter') {
-      steps {
-        script {
-          sh "bash test.sh"
-        }
-      }
-    }
     stage('Env. Cleanup') {
       steps {
         script {
