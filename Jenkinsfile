@@ -5,6 +5,7 @@ pipeline {
       steps {
         script {
           sh "echo $PARAM1"
+          exit 1
         }
       }
     }
