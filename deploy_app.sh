@@ -5,7 +5,7 @@ source functions.sh
 INSTANCE_IP=$(cat instance_ip)
 
 SSH_OPTS="-o StrictHostKeyChecking=no"
-SSH_LOGIN="ubuntu@$INSTANCE_IP"
+SSH_LOGIN="$SSH_USER@$INSTANCE_IP"
 
 while ! ssh $SSH_OPTS $SSH_LOGIN 'uname -a' &> /dev/null; do
 	echo "Waiting for SSH to be UP .."
