@@ -3,10 +3,7 @@ pipeline {
   stages {
     stage('Env. Cleanup') {
       steps {
-        script {
-          sh "bash cleanup.sh"
-        }
-
+        build job: 'aws-db-destroy/master', wait: true
       }
     }
 
